@@ -12,6 +12,11 @@ def get_prob_status(username: str, prob_id = -1):
     req = requests.get(req_url)
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
-    stat_tbl = soup.select('#status-table > tbody:nth-child(2)')
+    stat_tbl = soup.select('#status-table > tbody:nth-child(2) > tr')
 
-    print(stat_tbl)
+    for stat in stat_tbl:
+        cols = stat.find_all("td")
+        for col in cols:
+            print(col)
+        print()
+
