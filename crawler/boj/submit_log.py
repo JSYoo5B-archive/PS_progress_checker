@@ -16,7 +16,7 @@ PE = 5 # 출력 형식이 잘못되었습니다
 WA = 6 # 틀렸습니다
 # TODO: add more result codes
 
-class Boj_submit_log():
+class SubmitLog():
     def __init__(self, args):
         self.s_id = args[SUBMIT_ID]
         self.username = args[USERNAME]
