@@ -71,7 +71,9 @@ def parse_submit_log(html_tags:List[element.Tag]) -> SubmitLog:
     t_i += 1
     
     # Parse source length
-    src_len = int(html_tags[t_i].find('span').previousSibling)
+    src_len = 0
+    if html_tags[t_i].find('span') is not None:
+        src_len = int(html_tags[t_i].find('span').previousSibling)
     attr.append(src_len)
     t_i += 1
     
