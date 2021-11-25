@@ -7,11 +7,17 @@ from bs4 import BeautifulSoup, element
 from datetime import datetime
 from typing import List
 
-
-def get_prob_status(username: str, prob_id = -1):
-    url = "https://www.acmicpc.net/status"
-    url += "?user_id={}&language_id=-1&result_id=-1&problem_id={}"
-    req_url = url.format(username, prob_id)
+def fetch_submit_logs(username:str,
+                prob_id = -1, result_id = -1, submit_before = -1)\
+                -> List[SubmitLog]:
+    # Generate URL to request
+    req_url = "https://www.acmicpc.net/status?"
+    if len(username) > 0:
+        req_url += "user_id={}&".format(username)
+    req_url += "language_id=-1&problem_id={}&result_id={}".format(\
+            prob_id, result_id)
+    if submit_before != -1:
+        req_url += "&top={}".format(submit_before)
     
     # Request html data
     req = requests.get(req_url)
@@ -19,10 +25,15 @@ def get_prob_status(username: str, prob_id = -1):
     soup = BeautifulSoup(html, 'html.parser')
     stat_tbl = soup.select('#status-table > tbody:nth-child(2) > tr')
 
+    # Parse status table
+    submit_logs = []
     for row in stat_tbl:
+        # Parse columns into SubmitLog struct
         cols = row.find_all("td")
-        submit_log = parse_submit_log(cols)
-        print(submit_log.__dict__)
+        s_log = parse_submit_log(cols)
+        submit_logs.append(s_log)
+
+    return submit_logs
 
 
 def parse_submit_log(html_tags:List[element.Tag]) -> SubmitLog:
