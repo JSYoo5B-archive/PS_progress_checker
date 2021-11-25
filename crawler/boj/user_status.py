@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from submit_log import SubmitLog
+from constants import get_result_code
 import requests
 from bs4 import BeautifulSoup, element
 from datetime import datetime
@@ -47,8 +48,8 @@ def parse_submit_log(html_tags:List[element.Tag]) -> SubmitLog:
     
     # Parse result code
     result_abbrev = str(html_tags[t_i].span['data-color'])
-    # FIXME: convert abbreviation into enum integer
-    attr.append(result_abbrev)
+    code = get_result_code(result_abbrev)
+    attr.append(code)
     t_i += 1
     
     # Parse memory usage

@@ -10,12 +10,6 @@ from typing import List
         SRC_LEN, SUBMIT_TIME \
 ] = [ i for i in range(10) ]
 
-# BOJ result codes
-AC = 4 # 맞았습니다
-PE = 5 # 출력 형식이 잘못되었습니다
-WA = 6 # 틀렸습니다
-# TODO: add more result codes
-
 class SubmitLog():
     def __init__(self, args):
         self.s_id = args[SUBMIT_ID]
