@@ -137,3 +137,11 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# gspread API service account key
+gsheet-access.json
+
+# sheet info
+sheet-info.json
+
+# tracking user info
+users.json
