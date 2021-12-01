@@ -1,4 +1,4 @@
-# Problem Solving progress tracker
+# Problem Solving progress checker
 
 This tool helps managing your Problem Solving progress.
 
