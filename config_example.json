@@ -1,0 +1,11 @@
+{
+	"manager": "gspread",
+	"gspread": {
+		"gspreadkey": "~/.config/gspread/service_account.json",
+		"sheet_id": "1v_rteOHSn-MLmNY4rlMrkyVf_rDnRNllI09i7SNOqEg",
+		"worksheets": {
+			"users": "acc_info",
+			"tasks": "tasks"
+		}
+	}
+}
